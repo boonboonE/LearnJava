@@ -53,9 +53,26 @@ C1은 빠르게 실행되지만 덜 최적화 된 코드를 생성하고, C2는 
 C언어의 경우, 메모리 관리를 개발자가 직접 해 주어야 했는데 JVM에서는 가비지컬렉터를 이용해 더 이상 사용되지 않는 메모리를 회수하는 방식으로 직접 관리할 필요가 없어졌다.
 
 #### * 실행 엔진(Execution Engine)
+클래스 로더에 붙어있는 클래스를 읽으면서 static이 있는지 판단합니다. 이때, static이 없다면 그대로 종료된다.
 
 #### * 클래스 로더(Class Loader)
-클래스 로더에 붙어있는 클래스를 읽으면서 static이 있는지 판단합니다. 이때, static이 없다면 그대로 종료된다.
+컴파일러가 만들어낸 .class 파일을 로딩해오는 것을 담당한다. 이 부분에는 3가지 기본 클래스 로더가 있다.
+![클래스 로더](https://i.imgur.com/cs5Qyoe.png)
+###### - Bootstrap ClassLoaer
+  1. 부트스트랩 클래스로더는 3가지 기본 클래스로더 중 최상위 클래스인데, `$JAVA_HOME/jre/lib/rt.jar` 에서 `rt.jar`에 있는 핵심 클래스 파일을 로딩한다.
+  2. Native C로 구현되어있고, Primordial ClassLoader라고도 불린다.
+###### - Extension ClassLoader(->java9, Platform ClassLoader)
+  1. 환경변수로 지정된 폴더에 있는 확장 클래스 파일을 로딩한다.
+  2. Java로 구현되어 있고, `sun.misc.Launcher` 클래스 내에 static 클래스로 구현되어 있으며, `URLClassLoader`를 상속하고 있다.
+###### - Application ClassLoader(->java9, System ClassLoader)
+  1. 애플리케이션 클래스로더는 `-classpath(또는 -cp)`나 JAR 파일 안에 있는 Manifest 파일의 Class-Path 속성값으로 지정된 폴더에 있는 클래스를 로딩한다.
+  2. 익스텐션 클래스로더와 마찬가지로 Java로 구현되어 있으며, `sun.misc.Launcher` 클래스 안에 static 클래스로 구현되어 있으며, `URLClassLoader`를 상속하고 있다.
+  3. 개발자가 애플리케이션 구동을 위해 직접 작성한 대부분의 클래스는 이 애플리케이션 클래스로더에 의해 로딩된다.
+
+###### - 클래스로더의 3가지 원칙
+  1. 위임 원칙: 클래스로딩 작업을 상위 클래스로더에 위임한다.  
+  2. 가시 범위 원칙: 하위 클래스로더는 상위 클래스로더가 로딩한 클래스를 볼 수 있지만, 상위 클래스로더는 하위 클래스로더가 로딩한 클래스를 볼 수 없다.
+  3. 유일성 원칙: 하위 클래스로더는 상위 클래스로더가 로딩한 클래스를 다시 로딩하지 않게 해서 로딩된 클래스의 유일성을 보장한다.
 
 #### * 런타임 데이터 영역(Runtime Data Area)
 
