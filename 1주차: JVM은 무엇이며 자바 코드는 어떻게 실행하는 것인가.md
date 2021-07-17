@@ -23,10 +23,11 @@
 
 
 ### 3. 바이트코드란?
+![자바 컴파일러와 인터프리터](https://mblogthumb-phinf.pstatic.net/MjAxODAzMTNfMjU1/MDAxNTIwOTM2MDg5NzU5.FC9iwVzwVFoJ7L3d7R1MF1YBW8BMwQV9DLS3wCNvSJsg.OEmYIspBpTdYGKlQYIPsfThUhCdxdcS_rJnTuU-CTfkg.PNG.ehcibear314/%EC%9E%90%EB%B0%94%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC%EC%99%80%EC%9E%90%EB%B0%94%EC%9D%B8%ED%84%B0%ED%94%84%EB%A6%AC%ED%84%B0.png?type=w800)
 
-가상머신이 java코드를 그대로 사용하기보다는 '가상머신이 인식하기 쉬운 코드'로의 변환이 필요하다.
-그렇기 때문에 바이트코드로 변환하는 과정이 필요하다. 자바에서는 자바코드를 .class 코드로 변환하게 되는데 이 결과물을 바이트코드라고 한다.
-
+가상머신이 java코드를 그대로 사용하기보다는 '가상머신이 인식하기 쉬운 코드'로의 변환이 필요하다.  
+그렇기 때문에 바이트코드로 변환하는 과정이 필요하다. 자바에서는 자바코드를 .class 코드로 변환하게 되는데 이 결과물을 바이트코드라고 한다.  
+이 바이트코드는 인터프리터 언어의 형태를 하고 있어, 인터프리터를 통해 실행해준다.
 
 ### 4. JIT 컴파일러란? 그리고 동작방식
 
